@@ -8,7 +8,7 @@ $ wscreen https://example.org -w 1440 -h 1024
 
 ## Installation
 
-Requires node.
+Requires Node 10.18.1+
 
 (I should probably publish this as a package)
 
