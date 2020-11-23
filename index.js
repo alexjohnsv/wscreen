@@ -3,8 +3,9 @@ const puppeteer = require('puppeteer');
 const now = new Date();
 
 const seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds();
+const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
 
-const fileName = `Screen Shot ${now.getFullYear()}-${now.getMonth()}-${now.getDate()} at ${now.getHours()}.${now.getMinutes()}.${seconds}`;
+const fileName = `Screen Shot ${now.getFullYear()}-${now.getMonth()}-${now.getDate()} at ${now.getHours()}.${minutes}.${seconds}`;
 const homeDir = require('os').homedir();
 
 const filePath = homeDir + '/' + fileName + '.png';
