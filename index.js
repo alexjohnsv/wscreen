@@ -1,14 +1,13 @@
 const puppeteer = require('puppeteer');
 
-const now = new Date();
+function fileName() {
+  const now = new Date();
 
-const seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds();
-const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
+  const seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds();
+  const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
 
-const fileName = `Screen Shot ${now.getFullYear()}-${now.getMonth()}-${now.getDate()} at ${now.getHours()}.${minutes}.${seconds}`;
-const homeDir = require('os').homedir();
-
-const filePath = homeDir + '/' + fileName + '.png';
+  return `Screen Shot ${now.getFullYear()}-${now.getMonth()}-${now.getDate()} at ${now.getHours()}.${minutes}.${seconds}`;
+}
 
 const argv = require('yargs/yargs')(process.argv.slice(2))
       .usage('Usage: $0 http://example.org/')
@@ -39,6 +38,9 @@ const argv = require('yargs/yargs')(process.argv.slice(2))
     await page.setCookie({ name: argv['cookie-name'], value: argv['cookie-value']});
     await page.goto(argv._[0]);
   }
+
+  const homeDir = require('os').homedir();
+  const filePath = homeDir + '/' + fileName() + '.png';
 
   await page.screenshot({ path: filePath });
 
